@@ -1,3 +1,4 @@
-# FingerprintAttack on Shuffle module in Federated Learning
+# FingerprintAttack 
+A fingerprinting attack on shuffle module in federated learning (FL).
 
-Paper and code will be available soon!
+Our paper and code will be available soon!
