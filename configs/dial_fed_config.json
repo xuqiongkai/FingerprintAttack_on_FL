@@ -1,0 +1,50 @@
+{
+    "config": {
+      "trainer": {
+        "_base_": "base_sync_trainer",
+        "server": {
+          "_base_": "base_sync_server",
+          "server_optimizer": {
+            "_base_": "base_fed_avg_with_lr",
+            "lr": 1e-7,
+            "momentum": 0.9
+          },
+          "aggregation_type": "WEIGHTED_AVERAGE",
+          "active_user_selector": {
+            "_base_": "base_sequential_active_user_selector"
+          }
+        },
+        "client": {
+          "_base_": "base_client",
+          "epochs": 1,
+          "optimizer": {
+            "_base_": "base_optimizer_sgd",
+            "lr": 0.1,
+            "momentum": 0
+          },
+          "random_seed": 42,
+          "store_models_and_optimizers": true,
+          "store_models_dir": "/data/gpfs/projects/punim1846/xuqiongkai/exp/LM-fingerprint/",
+          "one_batch_each_epoch": false
+        },
+        "users_per_round": 10,
+        "epochs": 16,
+        "train_metrics_reported_per_epoch": 10,
+        "always_keep_trained_model": false,
+        "eval_epoch_frequency": 1,
+        "do_eval": true,
+        "report_train_metrics_after_aggregation": true
+      },
+      "data": {
+        "name": "dial",
+        "local_batch_size": 32,
+        "max_seq_len": 40,
+        "max_client_num": 70
+      },
+      "model": {
+        "name": "local-gpt2-tiny",
+        "dir": "/data/gpfs/projects/punim0478/xuqiongkai/exp/plm/"
+      }
+    }
+  }
+  
