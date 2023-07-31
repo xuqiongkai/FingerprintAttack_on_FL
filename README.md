@@ -4,9 +4,9 @@ This repository is dedicated to **Fingerprint Attack: Client De-Anonymization in
 
 
 ## Step 0: Get Started
-- Install PyTorch: python=3.10, pytorch, torchvision, torchaudio pytorch-cuda=11.7, sentencepiece, transformers, datasets, sklearn;
-- Install local FLSim: 1. download/clone FLSim [code](https://github.com/facebookresearch/FLSim.git); 2. add some modifications to save gradient updates (more details in next section);
-- Install opacus_lab (for refactoring GPT2): download/clone opacus_lab [code](https://github.com/facebookresearch/Opacus-lab.git)
+- Install PyTorch: python=3.10, pytorch-cuda=11.7, pytorch, torchvision, torchaudio, sentencepiece, transformers, datasets, sklearn etc.;
+- Install local FLSim (for simulating FL): 1. download/clone FLSim [code](https://github.com/facebookresearch/FLSim.git); 2. add some modifications to save gradient updates (more details in next section); 3. install local FLSim;
+- Install opacus_lab (for refactoring GPT2): download/clone opacus_lab [code](https://github.com/facebookresearch/Opacus-lab.git) and add dir_path to lm_exp.py.
 
 ## Step 1: Run FL Sumulator
 ```
@@ -14,9 +14,11 @@ python lm_exp.py --config-file configs/news_fed_config.json
 python lm_exp.py --config-file configs/dial_fed_config.json  
 ```
 
-Note that: gradients of the models can be recorded by add the following code to Opacus.
+Note that: gradients of the models can be recorded by add the following code to '_update_clients' (FLSim: trainers/sync_trainer.py) and some minor corresponding changes.
 ```
-TODO
+import os
+path = os.path.join(self.cfg.client.store_models_dir, '{}_e{}.pt'.format(client.name, epoch))
+torch.save([(name, w.grad.data.cpu()) for name, w in client_delta.model.named_parameters()], path)
 ```
 
 ## Step 2: Run Analysis (Clustering and Alignment)
@@ -28,7 +30,7 @@ python analyse_cluster.py --cluster spectral
 python analyse_cluster.py --cluster kmean
 ```
 
-### Citation
+## Citation
 To appear at ECAI 2023:
 ```bibtex
 @inproceedings{
