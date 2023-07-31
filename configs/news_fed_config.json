@@ -24,7 +24,7 @@
           },
           "random_seed": 42,
           "store_models_and_optimizers": true,
-          "store_models_dir": "/data/gpfs/projects/punim1846/xuqiongkai/exp/LM-fingerprint/",
+          "store_models_dir": "~/exp/LM-fingerprint/",
           "one_batch_each_epoch": false
         },
         "users_per_round": 10,
@@ -43,7 +43,7 @@
       },
       "model": {
         "name": "local-gpt2-tiny",
-        "dir": "/data/gpfs/projects/punim0478/xuqiongkai/exp/plm/"
+        "dir": "~/exp/plm/"
       }
     }
   }
