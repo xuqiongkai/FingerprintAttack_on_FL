@@ -8,13 +8,13 @@ This repository is dedicated to **Fingerprint Attack: Client De-Anonymization in
 - Install local FLSim (for simulating FL): 1. download/clone FLSim [code](https://github.com/facebookresearch/FLSim.git); 2. add some modifications to save gradient updates (more details in next section); 3. install local FLSim;
 - Install opacus_lab (for refactoring GPT2): download/clone opacus_lab [code](https://github.com/facebookresearch/Opacus-lab.git) and add dir_path to lm_exp.py.
 
-## Step 1: Run FL Sumulator
+## Step 1: Run FL Simulator
 ```
 python lm_exp.py --config-file configs/news_fed_config.json 
 python lm_exp.py --config-file configs/dial_fed_config.json  
 ```
 
-Note that: gradients of the models can be recorded by add the following code to '_update_clients' (FLSim: trainers/sync_trainer.py) and some minor corresponding changes.
+Note that: the gradients of the models can be recorded by adding the following code to '_update_clients' (FLSim: trainers/sync_trainer.py) and some minor corresponding changes.
 ```
 import os
 path = os.path.join(self.cfg.client.store_models_dir, '{}_e{}.pt'.format(client.name, epoch))
@@ -31,7 +31,7 @@ python analyse_cluster.py --cluster kmean
 ```
 
 ## Citation
-To appear at ECAI 2023:
+This work is to appear in ECAI 2023:
 ```bibtex
 @inproceedings{
   xu2023fingerprint,
