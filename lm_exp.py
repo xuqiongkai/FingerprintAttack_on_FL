@@ -5,6 +5,8 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
+# The following code is modified from sent140_tutorial for FLSim
+
 """In this tutorial, we will train a binary sentiment classifier on LEAF's Sent140 dataset with FLSim.
 
 Before running this file, you need to download the dataset and partition the data by users. We
@@ -18,6 +20,7 @@ provide the script get_data.sh for this purpose.
     FedBuff + SGDM
     python3 sent140_example.py --config-file configs/sent140_fedbuff_config.json
 """
+
 import itertools
 import json
 import re
