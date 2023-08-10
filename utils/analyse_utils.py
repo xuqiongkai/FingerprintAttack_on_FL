@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# Copyright (c)
+#        Qiongkai Xu
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
 
 from scipy.optimize import linear_sum_assignment
 import numpy as np
@@ -43,5 +50,4 @@ class PairwiseClustering:
 def purity_score(y_true, y_pred):
     # compute contingency matrix (also called confusion matrix)
     contingency_matrix = metrics.cluster.contingency_matrix(y_true, y_pred)
-    # return purity
     return np.sum(np.amax(contingency_matrix, axis=0)) / np.sum(contingency_matrix) 
